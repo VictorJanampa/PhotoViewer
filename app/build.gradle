@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'com.google.devtools.ksp' version '1.6.20-1.0.5'
+    id 'com.google.devtools.ksp' version '1.6.21-1.0.5'
 }
 
 android {
@@ -73,6 +73,8 @@ dependencies {
     implementation("com.squareup.moshi:moshi:1.13.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+    // Glide
+    implementation "com.github.bumptech.glide:glide:4.8.0"
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     // SwipeToRefresh

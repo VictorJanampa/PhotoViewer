@@ -1,6 +1,5 @@
 package com.example.photoviewer.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,7 +12,7 @@ interface PhotoDatabaseDao{
     fun insertPhoto(photo: Photo)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAllPhotos(photo: Photo)
+    fun insertAllPhotos(photos: List<Photo>)
 
     @Query("SELECT * from photo_table")
     fun getAllPhotos(): List<Photo>

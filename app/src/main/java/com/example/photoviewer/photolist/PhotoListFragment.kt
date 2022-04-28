@@ -18,7 +18,11 @@ class PhotoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = PhotoListFragmentBinding.inflate(inflater)
-        viewModel.greet()
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+            viewModel.greet()
+        })
         return binding.root
     }
 }
