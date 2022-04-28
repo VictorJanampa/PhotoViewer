@@ -3,7 +3,9 @@ package com.example.photoviewer
 import com.example.photoviewer.network.PhotoApiService
 import com.example.photoviewer.network.provideMoshi
 import com.example.photoviewer.network.provideRetrofit
+import com.example.photoviewer.photodetails.PhotoDetailsViewModel
 import com.example.photoviewer.photolist.PhotoListViewModel
+import com.example.photoviewer.repository.Photo
 import com.example.photoviewer.repository.PhotoRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -11,6 +13,7 @@ import retrofit2.Retrofit
 
 val viewModelModule = module {
     viewModel { PhotoListViewModel(get()) }
+    viewModel { (photo: Photo) -> PhotoDetailsViewModel(photo) }
 }
 
 val repositoryModule = module {

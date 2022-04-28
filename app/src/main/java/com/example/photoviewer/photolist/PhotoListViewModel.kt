@@ -27,9 +27,7 @@ class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
     private fun fetchPosts() {
         viewModelScope.launch {
             try {
-                _photos.value = repository.getAllPhotos().also {
-                    Log.i("Andrio", it[0].toString())
-                }
+                _photos.value = repository.getAllPhotos()
 
             } catch (e: Exception) {
                 _photos.value = ArrayList()
