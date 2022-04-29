@@ -1,5 +1,6 @@
 package com.example.photoviewer.database
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -9,27 +10,15 @@ import com.example.photoviewer.repository.Photo
 
 @Database(entities = [Photo::class], version = 1, exportSchema = false)
 abstract class PhotoDatabase : RoomDatabase() {
-
     abstract val photoDatabaseDao: PhotoDatabaseDao
+}
 
-    companion object {
-        @Volatile
-        private var INSTANCE: PhotoDatabase? = null
-        fun getInstance(context: Context): PhotoDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        PhotoDatabase::class.java,
-                        "photo_database"
-                    ).allowMainThreadQueries()
-                        .fallbackToDestructiveMigration()
-                        .build()
-                    INSTANCE = instance
-                }
-                return instance
-            }
-        }
-    }
+fun provideDataBase(application: Application): PhotoDatabase {
+    return Room.databaseBuilder(application, PhotoDatabase::class.java, "photos_database")
+        .fallbackToDestructiveMigration()
+        .build()
+}
+
+fun provideDao(photoDatabase: PhotoDatabase): PhotoDatabaseDao {
+    return photoDatabase.photoDatabaseDao
 }

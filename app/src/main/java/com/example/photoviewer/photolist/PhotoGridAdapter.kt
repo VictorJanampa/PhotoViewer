@@ -9,9 +9,9 @@ import com.example.photoviewer.databinding.PhotoListItemBinding
 import com.example.photoviewer.repository.Photo
 
 class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
-    ListAdapter<Photo, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+    ListAdapter<Photo, PhotoGridAdapter.PhotoDetailViewHolder>(DiffCallback) {
 
-    class MarsPropertyViewHolder(private var binding: PhotoListItemBinding):
+    class PhotoDetailViewHolder(private var binding: PhotoListItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: Photo) {
             binding.photo = photo
@@ -30,16 +30,16 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MarsPropertyViewHolder {
-        return MarsPropertyViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context)))
+                                    viewType: Int): PhotoDetailViewHolder {
+        return PhotoDetailViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
-        val marsProperty = getItem(position)
+    override fun onBindViewHolder(holder: PhotoDetailViewHolder, position: Int) {
+        val photoDetail = getItem(position)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(marsProperty)
+            onClickListener.onClick(photoDetail)
         }
-        holder.bind(marsProperty)
+        holder.bind(photoDetail)
     }
 
     class OnClickListener(val clickListener: (marsProperty:Photo) -> Unit) {

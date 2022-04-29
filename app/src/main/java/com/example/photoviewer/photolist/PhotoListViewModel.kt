@@ -1,12 +1,12 @@
 package com.example.photoviewer.photolist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.photoviewer.repository.Photo
 import com.example.photoviewer.repository.PhotoRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
@@ -19,20 +19,23 @@ class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
     val navigateToSelectedProperty: MutableLiveData<Photo?>
         get() = _navigateToSelectedItem
 
-
     init {
-        fetchPosts()
+        fetchPhotos()
     }
 
-    private fun fetchPosts() {
-        viewModelScope.launch {
-            try {
-                _photos.value = repository.getAllPhotos()
+    private fun fetchPhotos() {
+       viewModelScope.launch {
+           _photos.value = repository.getAllPhotos()
+       }
+    }
 
-            } catch (e: Exception) {
-                _photos.value = ArrayList()
-            }
-        }
+    fun refresh(): Boolean {
+        fetchPhotos()
+        return false
+    }
+
+    fun clearPhotos() {
+        _photos.value = repository.clearDatabase()
     }
 
     fun displayPhoto(photo: Photo) {
@@ -41,9 +44,5 @@ class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
 
     fun displayPhotoComplete() {
         _navigateToSelectedItem.value = null
-    }
-
-    fun greet() {
-        Log.i("Andrio", "Hola")
     }
 }
