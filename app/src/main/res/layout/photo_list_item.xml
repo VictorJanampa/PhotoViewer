@@ -12,17 +12,18 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <ImageView
-            android:id="@+id/mars_image"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:scaleType="centerCrop"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
             android:padding="4dp"
+            android:scaleType="centerCrop"
             app:imageUrl="@{photo.thumbnailUrl}"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:contentDescription="@string/app_name"/>
+            tools:src="@tools:sample/backgrounds/scenic" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

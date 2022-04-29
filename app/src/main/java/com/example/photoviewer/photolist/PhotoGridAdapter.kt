@@ -4,20 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import com.example.photoviewer.databinding.PhotoListItem2Binding
 import com.example.photoviewer.databinding.PhotoListItemBinding
 import com.example.photoviewer.repository.Photo
 
 class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
-    ListAdapter<Photo, PhotoGridAdapter.PhotoDetailViewHolder>(DiffCallback) {
+    ListAdapter<Photo, MyViewHolder>(DiffCallback) {
 
-    class PhotoDetailViewHolder(private var binding: PhotoListItemBinding):
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(photo: Photo) {
-            binding.photo = photo
-            binding.executePendingBindings()
-        }
-    }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Photo>() {
         override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
@@ -29,20 +22,30 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): PhotoDetailViewHolder {
-        return PhotoDetailViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override  fun onCreateViewHolder(parent: ViewGroup,
+                                    viewType: Int): MyViewHolder {
+
+        return when(viewType) {
+            0 -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+            1 -> PhotoItem2ViewHolder(PhotoListItem2Binding.inflate(LayoutInflater.from(parent.context),parent, false))
+            else -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        }
+
     }
 
-    override fun onBindViewHolder(holder: PhotoDetailViewHolder, position: Int) {
+    override fun getItemViewType(position: Int): Int {
+        return position % 2
+    }
+
+    class OnClickListener(val clickListener: (marsProperty:Photo) -> Unit) {
+        fun onClick(marsProperty:Photo) = clickListener(marsProperty)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val photoDetail = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(photoDetail)
         }
         holder.bind(photoDetail)
-    }
-
-    class OnClickListener(val clickListener: (marsProperty:Photo) -> Unit) {
-        fun onClick(marsProperty:Photo) = clickListener(marsProperty)
     }
 }

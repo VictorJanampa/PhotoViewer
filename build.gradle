@@ -14,7 +14,8 @@ plugins {
 }
 
 ext {
-    koin_version= "3.1.6"
+    koin_version = "3.1.6"
+    epoxyVersion = "4.6.3"
 }
 
 task clean(type: Delete) {
