@@ -1,15 +1,12 @@
 package com.example.photoviewer.photolist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.photoviewer.R
 import com.example.photoviewer.databinding.PhotoListFragmentBinding
-import com.example.photoviewer.listItem
-import com.example.photoviewer.listItem2
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhotoListFragment : Fragment() {
@@ -40,6 +37,10 @@ class PhotoListFragment : Fragment() {
                 viewModel.displayPhotoComplete()
             }
         }
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.photosGrid)
+
         setHasOptionsMenu(true)
         return binding.root
     }
