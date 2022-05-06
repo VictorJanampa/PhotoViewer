@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.photoviewer.databinding.PhotoDetailsFragmentBinding
@@ -27,15 +28,17 @@ class PhotoDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
         binding.photosGrid.adapter = PhotoDetailsAdapter()
-
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)//or VERTICAL
-        staggeredGridLayoutManager.scrollToPosition(12)
-
-        binding.photosGrid.layoutManager = staggeredGridLayoutManager
 
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.photosGrid)
+
+        binding.photosGrid.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+        binding.photosGrid.post {
+            binding.photosGrid.scrollToPosition(viewModel.getPosition())
+        }
 
         return binding.root
     }
