@@ -5,14 +5,15 @@ import com.example.photoviewer.network.PhotoApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PhotoRepository (private val api: PhotoApiService, private val database: PhotoDatabaseDao) {
     private suspend fun getFromNetwork() = api.getPhotos()
     private fun getFromDatabase() = database.getAllPhotos()
 
     suspend fun getAllPhotos(): List<Photo> {
-        var photos: List<Photo> = ArrayList()
-        val job = CoroutineScope(Dispatchers.IO).launch {
+        var photos: List<Photo>
+        withContext(Dispatchers.IO) {
             try {
                 photos = getFromDatabase()
                 if (photos.isEmpty()) {
@@ -23,7 +24,6 @@ class PhotoRepository (private val api: PhotoApiService, private val database: P
                 photos = ArrayList()
             }
         }
-        job.join()
         return photos
     }
 
