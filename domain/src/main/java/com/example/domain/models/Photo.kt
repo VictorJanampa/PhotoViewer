@@ -1,4 +1,4 @@
-package com.example.photoviewer.repository
+package com.example.domain.models
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

@@ -1,12 +1,12 @@
-package com.example.photoviewer.photodetails
+package com.example.photoviewer.ui.photodetails
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.photoviewer.repository.Photo
-import com.example.photoviewer.repository.PhotoRepository
+import com.example.domain.models.Photo
+import com.example.data.repository.PhotoRepository
 import kotlinx.coroutines.launch
 
 class PhotoDetailsViewModel(private val repository: PhotoRepository, photo: Photo) : ViewModel() {

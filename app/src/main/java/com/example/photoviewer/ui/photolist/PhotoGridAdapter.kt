@@ -1,13 +1,12 @@
-package com.example.photoviewer.photolist
+package com.example.photoviewer.ui.photolist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.photoviewer.databinding.PhotoListFullItemBinding
 import com.example.photoviewer.databinding.PhotoListItem2Binding
 import com.example.photoviewer.databinding.PhotoListItemBinding
-import com.example.photoviewer.repository.Photo
+import com.example.domain.models.Photo
 
 class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
     ListAdapter<Photo, ItemViewHolder>(DiffCallback) {
@@ -37,8 +36,8 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
         return position % 2
     }
 
-    class OnClickListener(val clickListener: (photo:Photo) -> Unit) {
-        fun onClick(photo:Photo) = clickListener(photo)
+    class OnClickListener(val clickListener: (photo: Photo) -> Unit) {
+        fun onClick(photo: Photo) = clickListener(photo)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

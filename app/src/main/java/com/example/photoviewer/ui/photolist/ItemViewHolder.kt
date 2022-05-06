@@ -1,11 +1,11 @@
-package com.example.photoviewer.photolist
+package com.example.photoviewer.ui.photolist
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.photoviewer.databinding.PhotoListFullItemBinding
 import com.example.photoviewer.databinding.PhotoListItem2Binding
 import com.example.photoviewer.databinding.PhotoListItemBinding
-import com.example.photoviewer.repository.Photo
+import com.example.domain.models.Photo
 
 abstract class ItemViewHolder (binding: View):
 RecyclerView.ViewHolder(binding) {

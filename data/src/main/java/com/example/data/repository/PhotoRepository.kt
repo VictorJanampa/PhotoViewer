@@ -1,7 +1,10 @@
-package com.example.photoviewer.repository
+package com.example.data.repository
 
-import com.example.photoviewer.database.PhotoDatabaseDao
-import com.example.photoviewer.network.PhotoApiService
+
+import com.example.data.database.PhotoDatabaseDao
+import com.example.data.network.PhotoApiService
+import com.example.domain.models.Photo
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

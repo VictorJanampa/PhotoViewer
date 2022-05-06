@@ -1,13 +1,13 @@
-package com.example.photoviewer.photodetails
+package com.example.photoviewer.ui.photodetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.photoviewer.databinding.PhotoListFullItemBinding
-import com.example.photoviewer.photolist.ItemViewHolder
-import com.example.photoviewer.photolist.PhotoItemFullViewHolder
-import com.example.photoviewer.repository.Photo
+import com.example.photoviewer.ui.photolist.ItemViewHolder
+import com.example.photoviewer.ui.photolist.PhotoItemFullViewHolder
+import com.example.domain.models.Photo
 
 
 class PhotoDetailsAdapter :

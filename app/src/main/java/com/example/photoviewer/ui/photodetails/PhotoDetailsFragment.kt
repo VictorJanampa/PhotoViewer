@@ -1,4 +1,4 @@
-package com.example.photoviewer.photodetails
+package com.example.photoviewer.ui.photodetails
 
 
 import android.os.Bundle
@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.photoviewer.databinding.PhotoDetailsFragmentBinding
-import com.example.photoviewer.photolist.PhotoGridAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

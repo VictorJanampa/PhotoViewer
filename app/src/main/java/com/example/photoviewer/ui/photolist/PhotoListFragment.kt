@@ -1,12 +1,10 @@
-package com.example.photoviewer.photolist
+package com.example.photoviewer.ui.photolist
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.photoviewer.R
 import com.example.photoviewer.databinding.PhotoListFragmentBinding
 

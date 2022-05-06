@@ -1,14 +1,14 @@
 package com.example.photoviewer
 
-import com.example.photoviewer.database.provideDao
-import com.example.photoviewer.database.provideDataBase
-import com.example.photoviewer.network.PhotoApiService
-import com.example.photoviewer.network.provideMoshi
-import com.example.photoviewer.network.provideRetrofit
-import com.example.photoviewer.photodetails.PhotoDetailsViewModel
-import com.example.photoviewer.photolist.PhotoListViewModel
-import com.example.photoviewer.repository.Photo
-import com.example.photoviewer.repository.PhotoRepository
+import com.example.data.database.provideDao
+import com.example.data.database.provideDataBase
+import com.example.data.network.PhotoApiService
+import com.example.data.network.provideMoshi
+import com.example.data.network.provideRetrofit
+import com.example.photoviewer.ui.photodetails.PhotoDetailsViewModel
+import com.example.photoviewer.ui.photolist.PhotoListViewModel
+import com.example.domain.models.Photo
+import com.example.data.repository.PhotoRepository
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -8,9 +8,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.request.RequestOptions
-import com.example.photoviewer.photodetails.PhotoDetailsAdapter
-import com.example.photoviewer.photolist.PhotoGridAdapter
-import com.example.photoviewer.repository.Photo
+import com.example.photoviewer.ui.photodetails.PhotoDetailsAdapter
+import com.example.photoviewer.ui.photolist.PhotoGridAdapter
+import com.example.domain.models.Photo
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Photo>?) {

@@ -1,6 +1,6 @@
-package com.example.photoviewer.network
+package com.example.data.network
 
-import com.example.photoviewer.repository.Photo
+import com.example.domain.models.Photo
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
