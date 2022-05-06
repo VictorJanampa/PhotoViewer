@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.photoviewer.databinding.PhotoDetailsFragmentBinding
+import com.example.photoviewer.photolist.PhotoGridAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -19,9 +22,21 @@ class PhotoDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = PhotoDetailsFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        binding.photosGrid.adapter = PhotoDetailsAdapter()
+
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)//or VERTICAL
+        staggeredGridLayoutManager.scrollToPosition(12)
+
+        binding.photosGrid.layoutManager = staggeredGridLayoutManager
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.photosGrid)
+
         return binding.root
     }
 }

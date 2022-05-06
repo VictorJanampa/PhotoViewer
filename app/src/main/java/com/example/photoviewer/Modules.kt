@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 
 val viewModelModule = module {
     viewModel { PhotoListViewModel(get()) }
-    viewModel { (photo: Photo) -> PhotoDetailsViewModel(photo) }
+    viewModel { (photo: Photo) -> PhotoDetailsViewModel(get(), photo) }
 }
 
 val repositoryModule = module {

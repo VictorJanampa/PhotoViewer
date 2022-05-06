@@ -26,20 +26,19 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
     override  fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ItemViewHolder {
 
-//        return when(viewType) {
-//            0 -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
-//            1 -> PhotoItem2ViewHolder(PhotoListItem2Binding.inflate(LayoutInflater.from(parent.context),parent, false))
-//            else -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
-//        }
-        return PhotoItemFullViewHolder(PhotoListFullItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        return when(viewType) {
+            0 -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+            1 -> PhotoItem2ViewHolder(PhotoListItem2Binding.inflate(LayoutInflater.from(parent.context),parent, false))
+            else -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         return position % 2
     }
 
-    class OnClickListener(val clickListener: (marsProperty:Photo) -> Unit) {
-        fun onClick(marsProperty:Photo) = clickListener(marsProperty)
+    class OnClickListener(val clickListener: (photo:Photo) -> Unit) {
+        fun onClick(photo:Photo) = clickListener(photo)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
