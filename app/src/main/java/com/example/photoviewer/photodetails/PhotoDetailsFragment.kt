@@ -28,11 +28,9 @@ class PhotoDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-
         binding.photosGrid.adapter = PhotoDetailsAdapter()
 
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.photosGrid)
+        PagerSnapHelper().attachToRecyclerView(binding.photosGrid)
 
         binding.photosGrid.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
