@@ -50,7 +50,7 @@ class PhotoListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.clear_database -> viewModel.clearPhotos()
+            R.id.clear_database -> true//viewModel.clearPhotos()
         }
         return true
     }

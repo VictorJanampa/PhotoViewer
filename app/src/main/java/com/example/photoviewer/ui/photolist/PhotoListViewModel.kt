@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
 import com.example.data.repository.PhotoRepository
+import com.example.domain.interactors.GetPhotosUseCaseImpl
 import kotlinx.coroutines.launch
 
-class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
+class PhotoListViewModel(private val getPhotos: GetPhotosUseCaseImpl) : ViewModel(){
 
     private val _photos = MutableLiveData<List<Photo>>()
     val photos: LiveData<List<Photo>>
@@ -24,17 +25,13 @@ class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
 
     private fun fetchPhotos() {
        viewModelScope.launch {
-           _photos.value = repository.getAllPhotos()
+           _photos.value = getPhotos.invoke()
        }
     }
 
     fun refresh(): Boolean {
         fetchPhotos()
         return false
-    }
-
-    fun clearPhotos() {
-        _photos.value = repository.clearDatabase()
     }
 
     fun displayPhoto(photo: Photo) {
@@ -44,4 +41,8 @@ class PhotoListViewModel(private val repository: PhotoRepository) : ViewModel(){
     fun displayPhotoComplete() {
         _navigateToSelectedItem.value = null
     }
+//  fun clearPhotos() {
+//      _photos.value = repository.clearDatabase()
+//  }
+
 }

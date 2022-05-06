@@ -4,17 +4,18 @@ package com.example.data.repository
 import com.example.data.database.PhotoDatabaseDao
 import com.example.data.network.PhotoApiService
 import com.example.domain.models.Photo
+import com.example.domain.repository.IPhotosRepository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PhotoRepository (private val api: PhotoApiService, private val database: PhotoDatabaseDao) {
+class PhotoRepository (private val api: PhotoApiService, private val database: PhotoDatabaseDao):IPhotosRepository {
     private suspend fun getFromNetwork() = api.getPhotos()
     private fun getFromDatabase() = database.getAllPhotos()
 
-    suspend fun getAllPhotos(): List<Photo> {
+    override suspend fun getAllPhotos(): List<Photo> {
         var photos: List<Photo>
         withContext(Dispatchers.IO) {
             try {
