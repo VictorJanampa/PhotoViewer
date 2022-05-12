@@ -7,30 +7,34 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
 import com.example.data.repository.PhotoRepository
+import com.example.domain.interactors.GetPhotosUseCaseImpl
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import kotlinx.coroutines.launch
 
-class PhotoDetailsViewModel(private val repository: PhotoRepository, photo: Photo) : ViewModel() {
-    private val _selectedProperty = MutableLiveData<Photo>()
-    val selectedProperty: LiveData<Photo>
-        get() = _selectedProperty
+class PhotoDetailsViewModel(private val getPhotos: GetPhotosUseCaseImpl, private val photo: Photo) : ViewModel() {
 
-    private val _photos = MutableLiveData<List<Photo>>()
-    val photos: LiveData<List<Photo>>
-        get() = _photos
+    val disposables = CompositeDisposable()
+
+    val photosRx: BehaviorSubject<List<Photo>> = BehaviorSubject.create()
 
     init {
-        _selectedProperty.value = photo
         fetchPhotos()
     }
 
     private fun fetchPhotos() {
         viewModelScope.launch {
-            _photos.value = repository.getAllPhotos()
+            photosRx.onNext(getPhotos.invoke())
         }
     }
 
     fun getPosition(): Int {
-        Log.i("Andrio","${_selectedProperty.value?.id ?: 0}")
-        return (_selectedProperty.value?.id ?: 0) -1
+        Log.i("Andrio","${photo.id}")
+        return (photo.id) -1
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
     }
 }

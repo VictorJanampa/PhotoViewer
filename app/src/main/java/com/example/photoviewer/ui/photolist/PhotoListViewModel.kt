@@ -1,23 +1,21 @@
 package com.example.photoviewer.ui.photolist
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
-import com.example.data.repository.PhotoRepository
 import com.example.domain.interactors.GetPhotosUseCaseImpl
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.coroutines.launch
 
 class PhotoListViewModel(private val getPhotos: GetPhotosUseCaseImpl) : ViewModel(){
 
-    private val _photos = MutableLiveData<List<Photo>>()
-    val photos: LiveData<List<Photo>>
-        get() = _photos
+    val disposables = CompositeDisposable()
 
-    private val _navigateToSelectedItem = MutableLiveData<Photo?>()
-    val navigateToSelectedProperty: MutableLiveData<Photo?>
-        get() = _navigateToSelectedItem
+    val photosRx: BehaviorSubject<List<Photo>> = BehaviorSubject.create()
+    val navigateToSelectedItemRx: PublishSubject<Photo> = PublishSubject.create()
 
     init {
         fetchPhotos()
@@ -25,24 +23,24 @@ class PhotoListViewModel(private val getPhotos: GetPhotosUseCaseImpl) : ViewMode
 
     private fun fetchPhotos() {
        viewModelScope.launch {
-           _photos.value = getPhotos.invoke()
+           photosRx.onNext(getPhotos.invoke())
        }
     }
 
-    fun refresh(): Boolean {
+    fun refresh()  {
         fetchPhotos()
-        return false
     }
 
     fun displayPhoto(photo: Photo) {
-        _navigateToSelectedItem.value = photo
+        navigateToSelectedItemRx.onNext(photo)
     }
 
-    fun displayPhotoComplete() {
-        _navigateToSelectedItem.value = null
-    }
-//  fun clearPhotos() {
-//      _photos.value = repository.clearDatabase()
-//  }
+    fun clearPhotos() {
+        photosRx.onNext(ArrayList())
+      }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
+    }
 }

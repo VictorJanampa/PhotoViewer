@@ -10,14 +10,13 @@ import com.example.domain.models.Photo
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-
 val viewModelModule = module {
     viewModel { PhotoListViewModel(get()) }
     viewModel { (photo: Photo) -> PhotoDetailsViewModel(get(), photo) }
 }
 val useCaseModule = module {
-    fun provideUseCase(photoRepository: PhotoRepository): GetPhotosUseCaseImpl {
+    fun provideGetPhotosUseCase(photoRepository: PhotoRepository): GetPhotosUseCaseImpl {
         return GetPhotosUseCaseImpl(photoRepository)
     }
-    single{provideUseCase(get())}
+    single{provideGetPhotosUseCase(get())}
 }

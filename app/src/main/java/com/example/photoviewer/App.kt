@@ -21,6 +21,6 @@ class App : Application(){
         }
     }
     private val appModule = listOf(viewModelModule)
-    private val dataModule = listOf(repositoryModule,  retrofitModule, apiModule, databaseModule)
+    private val dataModule = listOf(repositoryModule, retrofitModule, apiModule, databaseModule)
     private val domainModule = listOf(useCaseModule)
 }
