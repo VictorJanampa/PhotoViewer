@@ -31,7 +31,7 @@ class PhotoRepository (private val api: PhotoApiService, private val database: P
         return photos
     }
 
-    fun clearDatabase(): ArrayList<Photo>{
+    fun clearDatabase(): ArrayList<Photo>{ //TODO:  please remove un used function
         CoroutineScope(Dispatchers.IO).launch {
             database.clearPhotos()
         }

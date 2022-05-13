@@ -13,7 +13,7 @@ abstract class PhotoDatabase : RoomDatabase() {
 }
 
 fun provideDataBase(application: Application): PhotoDatabase {
-    return Room.databaseBuilder(application, PhotoDatabase::class.java, "photos_database")
+    return Room.databaseBuilder(application, PhotoDatabase::class.java, "photos_database") // TODO: move this string to a constant
         .fallbackToDestructiveMigration()
         .build()
 }
