@@ -1,18 +1,20 @@
 package com.example.photoviewer.ui.photodetails
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
-import com.example.data.repository.PhotoRepository
 import com.example.domain.interactors.GetPhotosUseCaseImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PhotoDetailsViewModel(private val getPhotos: GetPhotosUseCaseImpl, private val photo: Photo) : ViewModel() {
+@HiltViewModel
+class PhotoDetailsViewModel @Inject constructor(
+    private val getPhotos: GetPhotosUseCaseImpl
+    ) : ViewModel() {
 
     val disposables = CompositeDisposable()
 
@@ -28,10 +30,10 @@ class PhotoDetailsViewModel(private val getPhotos: GetPhotosUseCaseImpl, private
         }
     }
 
-    fun getPosition(): Int {
-        Log.i("Andrio","${photo.id}")
-        return (photo.id) -1
-    }
+//    fun getPosition(): Int {
+//        Log.i("Andrio","${photo.id}")
+//        return (photo.id) -1
+//    }
 
     override fun onCleared() {
         super.onCleared()

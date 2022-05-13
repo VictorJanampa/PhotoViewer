@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40"
     }
 }
 plugins {
@@ -16,7 +17,7 @@ plugins {
 
 ext {
     koin_version = "3.1.6"
-    epoxyVersion = "4.6.3"
+    hilt_version = "2.40"
 }
 
 task clean(type: Delete) {

@@ -4,14 +4,18 @@ package com.example.data.repository
 import com.example.data.database.PhotoDatabaseDao
 import com.example.data.network.PhotoApiService
 import com.example.domain.models.Photo
-import com.example.domain.repository.IPhotosRepository
+import com.example.domain.repository.PhotoRepository
+import dagger.hilt.android.AndroidEntryPoint
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class PhotoRepository (private val api: PhotoApiService, private val database: PhotoDatabaseDao):IPhotosRepository {
+@Singleton
+class PhotoRepositoryImpl @Inject constructor(private val api: PhotoApiService, private val database: PhotoDatabaseDao) : PhotoRepository {
     private suspend fun getFromNetwork() = api.getPhotos()
     private fun getFromDatabase() = database.getAllPhotos()
 

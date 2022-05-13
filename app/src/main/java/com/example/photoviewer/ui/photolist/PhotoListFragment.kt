@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-
 import com.example.photoviewer.R
 import com.example.photoviewer.databinding.PhotoListFragmentBinding
-import io.reactivex.rxjava3.subjects.BehaviorSubject
-
+import com.example.photoviewer.ui.photodetails.PhotoDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class PhotoListFragment : Fragment() {
 
-    private val viewModel: PhotoListViewModel by viewModel()
+    private val viewModel by viewModels<PhotoListViewModel>()
+    //private val viewModel: PhotoListViewModel by viewModel()
     private lateinit var binding: PhotoListFragmentBinding
 
     override fun onCreateView(

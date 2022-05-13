@@ -1,22 +1,24 @@
 package com.example.photoviewer.di
 
-
-import com.example.data.repository.PhotoRepository
+import com.example.data.repository.PhotoRepositoryImpl
+import com.example.domain.interactors.GetPhotosUseCase
 import com.example.domain.interactors.GetPhotosUseCaseImpl
-import com.example.photoviewer.ui.photodetails.PhotoDetailsViewModel
-import com.example.photoviewer.ui.photolist.PhotoListViewModel
-import com.example.domain.models.Photo
+import com.example.domain.repository.PhotoRepository
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
-val viewModelModule = module {
-    viewModel { PhotoListViewModel(get()) }
-    viewModel { (photo: Photo) -> PhotoDetailsViewModel(get(), photo) }
-}
-val useCaseModule = module {
-    fun provideGetPhotosUseCase(photoRepository: PhotoRepository): GetPhotosUseCaseImpl {
-        return GetPhotosUseCaseImpl(photoRepository)
-    }
-    single{provideGetPhotosUseCase(get())}
-}
+//val viewModelModule = module {
+//    viewModel { PhotoListViewModel(get()) }
+//    viewModel { (photo: Photo) -> PhotoDetailsViewModel(get(), photo) }
+//}
+//val useCaseModule = module {
+//    fun provideGetPhotosUseCase(photoRepositoryImpl: PhotoRepositoryImpl): GetPhotosUseCaseImpl {
+//        return GetPhotosUseCaseImpl(photoRepositoryImpl)
+//    }
+//    single{provideGetPhotosUseCase(get())}
+//}

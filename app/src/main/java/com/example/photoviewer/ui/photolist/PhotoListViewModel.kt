@@ -5,12 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
 import com.example.domain.interactors.GetPhotosUseCaseImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PhotoListViewModel(private val getPhotos: GetPhotosUseCaseImpl) : ViewModel(){
+@HiltViewModel
+class PhotoListViewModel @Inject constructor(
+    private val getPhotos: GetPhotosUseCaseImpl
+    ) : ViewModel(){
 
     val disposables = CompositeDisposable()
 

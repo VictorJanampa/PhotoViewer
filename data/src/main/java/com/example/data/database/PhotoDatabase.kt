@@ -9,15 +9,15 @@ import com.example.domain.models.Photo
 
 @Database(entities = [Photo::class], version = 1, exportSchema = false)
 abstract class PhotoDatabase : RoomDatabase() {
-    abstract val photoDatabaseDao: PhotoDatabaseDao
+    abstract fun photoDatabaseDao(): PhotoDatabaseDao
 }
 
-fun provideDataBase(application: Application): PhotoDatabase {
-    return Room.databaseBuilder(application, PhotoDatabase::class.java, "photos_database")
-        .fallbackToDestructiveMigration()
-        .build()
-}
-
-fun provideDao(photoDatabase: PhotoDatabase): PhotoDatabaseDao {
-    return photoDatabase.photoDatabaseDao
-}
+//fun provideDataBase(application: Application): PhotoDatabase {
+//    return Room.databaseBuilder(application, PhotoDatabase::class.java, "photos_database")
+//        .fallbackToDestructiveMigration()
+//        .build()
+//}
+//
+//fun provideDao(photoDatabase: PhotoDatabase): PhotoDatabaseDao {
+//    return photoDatabase.photoDatabaseDao
+//}
