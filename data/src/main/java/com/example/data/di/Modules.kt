@@ -20,28 +20,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-//val repositoryModule = module {
-//    single { PhotoRepositoryImpl(get(),get()) }
-//}
-//
-//val apiModule = module {
-//
-//    fun provideApi(retrofit: Retrofit): PhotoApiService {
-//        return retrofit.create(PhotoApiService::class.java)
-//    }
-//    single { provideApi(get()) }
-//}
-//
-//val retrofitModule = module {
-//    single { provideMoshi() }
-//    single { provideRetrofit(get()) }
-//}
-//
-//val databaseModule = module {
-//    single { provideDataBase(androidApplication()) }
-//    single { provideDao(get()) }
-//}
-
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {

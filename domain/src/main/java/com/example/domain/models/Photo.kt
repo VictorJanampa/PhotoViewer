@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
-
 @Parcelize
 @Entity(tableName = "photo_table")
 data class Photo @Inject constructor(

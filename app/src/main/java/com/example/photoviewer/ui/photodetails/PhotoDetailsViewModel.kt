@@ -1,6 +1,5 @@
 package com.example.photoviewer.ui.photodetails
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Photo
@@ -29,11 +28,6 @@ class PhotoDetailsViewModel @Inject constructor(
             photosRx.onNext(getPhotos.invoke())
         }
     }
-
-//    fun getPosition(): Int {
-//        Log.i("Andrio","${photo.id}")
-//        return (photo.id) -1
-//    }
 
     override fun onCleared() {
         super.onCleared()
