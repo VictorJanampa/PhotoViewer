@@ -25,7 +25,7 @@ class PhotoGridAdapter(private val onClickListener: OnClickListener ) :
     override  fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ItemViewHolder {
 
-        return when(viewType) {
+        return when(viewType) { //TODO: use a companion object with const values insted of hard code cases to indicate what does the 1 or 0 means example: LARGE_PHOTO_ITEM=1
             0 -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
             1 -> PhotoItem2ViewHolder(PhotoListItem2Binding.inflate(LayoutInflater.from(parent.context),parent, false))
             else -> PhotoItem1ViewHolder(PhotoListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))

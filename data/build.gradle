@@ -61,4 +61,5 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
 
+    //TODO: great ussage of gradle in data model
 }

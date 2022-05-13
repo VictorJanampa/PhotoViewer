@@ -44,5 +44,5 @@ class PhotoListViewModel(private val getPhotos: GetPhotosUseCaseImpl) : ViewMode
 //  fun clearPhotos() {
 //      _photos.value = repository.clearDatabase()
 //  }
-
+// TODO: remove not signifcate coments
 }

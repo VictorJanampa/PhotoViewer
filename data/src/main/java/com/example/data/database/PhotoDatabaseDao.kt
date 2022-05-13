@@ -9,7 +9,7 @@ import com.example.domain.models.Photo
 @Dao
 interface PhotoDatabaseDao{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertPhoto(photo: Photo)
+    fun insertPhoto(photo: Photo) //TODO: remove not used function
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAllPhotos(photos: List<Photo>)
